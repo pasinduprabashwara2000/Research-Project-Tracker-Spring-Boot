@@ -1,9 +1,14 @@
-package lk.ijse.cmjd.researchtracker.project.dto;
+package lk.ijse.cmjd.researchtracker.project.DTO;
 
-import lk.ijse.cmjd.researchtracker.project.dto.Enum.ProjectStatusEnum;
-
+import lk.ijse.cmjd.researchtracker.project.Enum.ProjectStatusEnum;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import java.util.Date;
 
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 public class ProjectDTO {
 
     private String id;
@@ -16,5 +21,5 @@ public class ProjectDTO {
     private Date endDate;
     private Date createdAt;
     private Date updatedAt;
-    
+
 }

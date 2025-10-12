@@ -1,4 +1,4 @@
-package lk.ijse.cmjd.researchtracker.project.dao;
+package lk.ijse.cmjd.researchtracker.project.DAO;
 
 import lk.ijse.cmjd.researchtracker.project.entity.ProjectEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
