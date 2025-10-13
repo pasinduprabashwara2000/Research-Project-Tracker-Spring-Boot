@@ -8,7 +8,7 @@ public interface MilestoneService {
     void save(MilestoneDTO milestoneDTO) throws Exception;
     void update(String id, MilestoneDTO milestoneDTO) throws Exception;
     void delete(String id) throws Exception;
-    MilestoneDTO search() throws Exception;
+    MilestoneDTO search(String id) throws Exception;
     ArrayList <MilestoneDTO> getAll() throws Exception;
 
 }
