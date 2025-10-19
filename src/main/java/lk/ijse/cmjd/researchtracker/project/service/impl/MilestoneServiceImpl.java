@@ -66,7 +66,7 @@ public class MilestoneServiceImpl implements MilestoneService {
                 throw new Exception("Milestone with "+id+" not found");
             }
         } catch (Exception e) {
-            throw new Exception("Milestone Deleted Failed");
+            throw new Exception("Milestone Deleted Failed : "+e.getMessage());
         }
     }
 
@@ -97,8 +97,9 @@ public class MilestoneServiceImpl implements MilestoneService {
     @Override
     public ArrayList<MilestoneDTO> getAll() throws Exception {
 
+        List<MilestoneEntity> milestoneEntities = milestoneDAO.findAll();
+
         try {
-            List<MilestoneEntity> milestoneEntities = milestoneDAO.findAll();
             ArrayList<MilestoneDTO> milestoneDTOS = new ArrayList<>();
             for (MilestoneEntity milestoneEntity : milestoneEntities) {
                 milestoneDTOS.add(new MilestoneDTO(

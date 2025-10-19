@@ -1,7 +1,7 @@
 package lk.ijse.cmjd.researchtracker.project.controller;
 
-import lk.ijse.cmjd.researchtracker.project.DTO.ProjectDTO;
-import lk.ijse.cmjd.researchtracker.project.service.ProjectService;
+import lk.ijse.cmjd.researchtracker.project.DTO.DocumentDTO;
+import lk.ijse.cmjd.researchtracker.project.service.DocumentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,18 +9,18 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 
 @RestController
-@RequestMapping("/api/projects/")
+@RequestMapping("/api/document/")
 @RequiredArgsConstructor
-public class ProjectController {
+public class DocumentController {
 
-    private final ProjectService projectService;
+    private final DocumentService documentService;
 
     @PostMapping
-    public ResponseEntity <String> save(@RequestBody ProjectDTO projectDTO){
+    public ResponseEntity <String> save(@RequestBody DocumentDTO documentDTO) throws Exception {
         try {
-            projectService.save(projectDTO);
+            documentService.save(documentDTO);
             return ResponseEntity.status(HttpStatus.OK)
-                    .body("Project Saved Successfully");
+                    .body("Document Saved Successfully");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(e.getMessage());
@@ -28,11 +28,11 @@ public class ProjectController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity <String> update(@PathVariable String id, @RequestBody ProjectDTO projectDTO){
+    public ResponseEntity <String> update(@PathVariable String id, @RequestBody DocumentDTO documentDTO){
         try {
-            projectService.update(id,projectDTO);
+            documentService.update(id,documentDTO);
             return ResponseEntity.status(HttpStatus.OK)
-                    .body("Project Updated Successfully");
+                    .body("Document Update Successfully");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(e.getMessage());
@@ -40,11 +40,11 @@ public class ProjectController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity <String> delete(@PathVariable String id){
+    public ResponseEntity <String> delete(@PathVariable String id) throws Exception{
         try {
-            projectService.delete(id);
+            documentService.delete(id);
             return ResponseEntity.status(HttpStatus.OK)
-                    .body("Project Deleted Successfully");
+                    .body("Document Deleted Successfully");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(e.getMessage());
@@ -52,10 +52,10 @@ public class ProjectController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity <?> search(@PathVariable String id){
+    public ResponseEntity <?> search(@PathVariable String id) throws Exception {
         try {
-            ProjectDTO projectDTO = projectService.search(id);
-            return ResponseEntity.ok(projectDTO);
+            DocumentDTO documentDTO = documentService.search(id);
+            return ResponseEntity.ok(documentDTO);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(e.getMessage());
@@ -63,14 +63,13 @@ public class ProjectController {
     }
 
     @GetMapping
-    public ResponseEntity <?> getAll(){
+    public ResponseEntity <?> getAll() {
         try {
-            ArrayList <ProjectDTO> projectDTO = projectService.getAll();
-            return ResponseEntity.ok(projectDTO);
+            ArrayList <DocumentDTO> documentDTOS = documentService.getAll();
+            return ResponseEntity.ok(documentDTOS);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(e.getMessage());
+                    .body("Can't Retrieve Data : "+e.getMessage());
         }
     }
-
-}
+ }

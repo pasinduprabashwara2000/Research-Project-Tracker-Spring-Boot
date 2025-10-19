@@ -108,8 +108,10 @@ public class ProjectServiceImpl implements ProjectService {
 
         @Override
         public ArrayList<ProjectDTO> getAll () throws Exception {
+
+            List <ProjectEntity> projectEntities = projectDAO.findAll();
+
             try {
-                List <ProjectEntity> projectEntities = projectDAO.findAll();
                 ArrayList <ProjectDTO> projectDTOS = new ArrayList<>();
                 for (ProjectEntity projectEntity : projectEntities){
                     projectDTOS.add(new ProjectDTO(

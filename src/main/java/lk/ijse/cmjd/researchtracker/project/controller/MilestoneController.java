@@ -6,8 +6,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.util.ArrayList;
 
 @RestController
+@RequestMapping("/api/milestone/")
 @RequiredArgsConstructor
 public class MilestoneController {
 
@@ -25,7 +27,7 @@ public class MilestoneController {
         }
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     public ResponseEntity <String> update(@PathVariable String id, @RequestBody MilestoneDTO milestoneDTO){
         try {
             milestoneService.update(id,milestoneDTO);
@@ -37,4 +39,37 @@ public class MilestoneController {
         }
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity <String> delete(@PathVariable String id) throws Exception {
+        try {
+            milestoneService.delete(id);
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body("Milestone Deleted Successfully");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(e.getMessage());
+        }
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity <?> search(@PathVariable String id) throws Exception {
+        try {
+            MilestoneDTO milestoneDTO = milestoneService.search(id);
+            return ResponseEntity.ok(milestoneDTO);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(e.getMessage());
+        }
+    }
+
+    @GetMapping
+    public ResponseEntity <?> getAll(){
+        try {
+            ArrayList <MilestoneDTO> milestoneDTOS = milestoneService.getAll();
+            return ResponseEntity.ok(milestoneDTOS);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(e.getMessage());
+        }
+    }
 }

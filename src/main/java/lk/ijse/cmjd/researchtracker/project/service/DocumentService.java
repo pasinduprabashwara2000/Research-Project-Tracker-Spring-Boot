@@ -7,7 +7,7 @@ public interface DocumentService {
 
     void save(DocumentDTO documentDTO) throws Exception;
     void update(String id, DocumentDTO documentDTO) throws Exception;
-    void delete(DocumentDTO documentDTO) throws Exception;
+    void delete(String id) throws Exception;
     DocumentDTO search (String id) throws Exception;
     ArrayList <DocumentDTO> getAll() throws Exception;
 
