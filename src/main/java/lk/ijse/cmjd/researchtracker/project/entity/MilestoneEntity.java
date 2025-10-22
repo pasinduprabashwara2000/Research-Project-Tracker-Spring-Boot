@@ -17,7 +17,7 @@ public class MilestoneEntity {
 
     @Id
     private String id;
-    private String project;
+    private String projectID;
     private String title;
     private String description;
     private Date dueDate;

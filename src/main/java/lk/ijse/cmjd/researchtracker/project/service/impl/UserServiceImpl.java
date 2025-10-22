@@ -24,7 +24,7 @@ public class UserServiceImpl implements UserService {
                     userDTO.getUsername(),
                     userDTO.getPassword(),
                     userDTO.getFullName(),
-                    userDTO.getUserRoleEnum(),
+                    userDTO.getRole(),
                     userDTO.getCreatedAt()
             );
             userDAO.save(userEntity);
@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService {
                 userEntity.setUsername(userDTO.getUsername());
                 userEntity.setPassword(userDTO.getPassword());
                 userEntity.setFullName(userDTO.getFullName());
-                userEntity.setUserRoleEnum(userDTO.getUserRoleEnum());
+                userEntity.setRole(userDTO.getRole());
                 userEntity.setCreatedAt(userDTO.getCreatedAt());
                 userDAO.save(userEntity);
             } else {
@@ -77,7 +77,7 @@ public class UserServiceImpl implements UserService {
                         userEntity.getUsername(),
                         userEntity.getPassword(),
                         userEntity.getFullName(),
-                        userEntity.getUserRoleEnum(),
+                        userEntity.getRole(),
                         userEntity.getCreatedAt()
                 );
             } else {
@@ -102,7 +102,7 @@ public class UserServiceImpl implements UserService {
                         userEntity.getUsername(),
                         userEntity.getPassword(),
                         userEntity.getFullName(),
-                        userEntity.getUserRoleEnum(),
+                        userEntity.getRole(),
                         userEntity.getCreatedAt()
                 ));
             }

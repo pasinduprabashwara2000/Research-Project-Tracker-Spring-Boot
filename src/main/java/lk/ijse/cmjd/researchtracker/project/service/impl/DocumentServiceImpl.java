@@ -22,7 +22,7 @@ public class DocumentServiceImpl implements DocumentService {
         try {
             DocumentEntity documentEntity = new DocumentEntity(
                 documentDTO.getId(),
-                documentDTO.getProject(),
+                documentDTO.getProjectID(),
                 documentDTO.getTitle(),
                 documentDTO.getDescription(),
                 documentDTO.getUrlOrPath(),
@@ -42,7 +42,7 @@ public class DocumentServiceImpl implements DocumentService {
         try {
             if(documentExists.isPresent()){
                 DocumentEntity documentEntity = documentExists.get();
-                documentEntity.setProject(documentDTO.getProject());
+                documentEntity.setProjectID(documentDTO.getProjectID());
                 documentEntity.setTitle(documentDTO.getTitle());
                 documentEntity.setDescription(documentDTO.getDescription());
                 documentEntity.setUrlOrPath(documentDTO.getUrlOrPath());
@@ -81,7 +81,7 @@ public class DocumentServiceImpl implements DocumentService {
                 DocumentEntity documentEntity = documentExists.get();
                 return new DocumentDTO(
                         documentEntity.getId(),
-                        documentEntity.getProject(),
+                        documentEntity.getProjectID(),
                         documentEntity.getTitle(),
                         documentEntity.getDescription(),
                         documentEntity.getUrlOrPath(),
@@ -107,7 +107,7 @@ public class DocumentServiceImpl implements DocumentService {
         for(DocumentEntity documentEntity : documentEntities) {
             documentDTOS.add(new DocumentDTO(
                     documentEntity.getId(),
-                    documentEntity.getProject(),
+                    documentEntity.getProjectID(),
                     documentEntity.getTitle(),
                     documentEntity.getDescription(),
                     documentEntity.getUrlOrPath(),

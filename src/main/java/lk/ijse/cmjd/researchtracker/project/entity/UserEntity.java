@@ -1,12 +1,12 @@
 package lk.ijse.cmjd.researchtracker.project.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lk.ijse.cmjd.researchtracker.project.Enum.UserRoleEnum;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
+
 import java.util.Date;
 
 @Entity
@@ -14,14 +14,18 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@Builder
 public class UserEntity {
 
     @Id
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    @Column(updatable = false, nullable = false)
     private String id;
     private String username;
     private String password;
     private String fullName;
-    private UserRoleEnum userRoleEnum;
+    private String role;
     private Date createdAt;
 
 }

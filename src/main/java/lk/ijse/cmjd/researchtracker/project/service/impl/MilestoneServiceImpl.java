@@ -21,7 +21,7 @@ public class MilestoneServiceImpl implements MilestoneService {
         try {
             MilestoneEntity milestoneEntity = new MilestoneEntity(
                     milestoneDTO.getId(),
-                    milestoneDTO.getProject(),
+                    milestoneDTO.getProjectID(),
                     milestoneDTO.getTitle(),
                     milestoneDTO.getDescription(),
                     milestoneDTO.getDueDate(),
@@ -42,7 +42,7 @@ public class MilestoneServiceImpl implements MilestoneService {
         try {
             if(milestoneExists.isPresent()){
                 MilestoneEntity milestoneEntity = milestoneExists.get();
-                milestoneEntity.getProject();
+                milestoneEntity.getProjectID();
                 milestoneEntity.getTitle();
                 milestoneEntity.getDescription();
                 milestoneEntity.getDueDate();
@@ -79,7 +79,7 @@ public class MilestoneServiceImpl implements MilestoneService {
                 MilestoneEntity milestoneEntity = milestoneExists.get();
                 return new MilestoneDTO(
                         milestoneEntity.getId(),
-                        milestoneEntity.getProject(),
+                        milestoneEntity.getProjectID(),
                         milestoneEntity.getTitle(),
                         milestoneEntity.getDescription(),
                         milestoneEntity.getDueDate(),
@@ -104,7 +104,7 @@ public class MilestoneServiceImpl implements MilestoneService {
             for (MilestoneEntity milestoneEntity : milestoneEntities) {
                 milestoneDTOS.add(new MilestoneDTO(
                         milestoneEntity.getId(),
-                        milestoneEntity.getProject(),
+                        milestoneEntity.getProjectID(),
                         milestoneEntity.getTitle(),
                         milestoneEntity.getDescription(),
                         milestoneEntity.getDueDate(),

@@ -1,6 +1,5 @@
 package lk.ijse.cmjd.researchtracker.project.DTO;
 
-import lk.ijse.cmjd.researchtracker.project.Enum.UserRoleEnum;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,7 +14,7 @@ public class UserDTO {
     private String username;
     private String password;
     private String fullName;
-    private UserRoleEnum userRoleEnum;
+    private String role;
     private Date createdAt;
 
 }

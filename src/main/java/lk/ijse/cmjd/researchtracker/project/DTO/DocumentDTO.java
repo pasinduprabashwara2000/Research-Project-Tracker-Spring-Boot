@@ -11,7 +11,7 @@ import java.util.Date;
 public class DocumentDTO {
 
     private String id;
-    private String project;
+    private String projectID;
     private String title;
     private String description;
     private String urlOrPath;
