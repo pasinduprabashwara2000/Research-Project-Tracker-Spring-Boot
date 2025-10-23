@@ -10,8 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 
 @RestController
-@RequestMapping("/api/user")
-@CrossOrigin(origins = "http://localhost:3000")
+@RequestMapping("/api/user/")
 @RequiredArgsConstructor
 public class UserController {
 

@@ -20,7 +20,7 @@ public class JwtService {
             return Keys.hmacShaKeyFor(secret.getBytes());
         }
 
-        public String generateToken(String username) {
+        public String generateToken(String username, String string) {
             return Jwts.builder()
                     .setSubject(username)
                     .setIssuedAt(new Date())
