@@ -5,6 +5,7 @@ import lk.ijse.cmjd.researchtracker.project.service.MilestoneService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 
@@ -15,6 +16,7 @@ public class MilestoneController {
 
     private final MilestoneService milestoneService;
 
+    @PreAuthorize("hasRole('Admin')")
     @PostMapping
     public ResponseEntity <String> save(@RequestBody MilestoneDTO milestoneDTO){
         try {
@@ -27,6 +29,7 @@ public class MilestoneController {
         }
     }
 
+    @PreAuthorize("hasRole('Admin')")
     @PutMapping("/{id}")
     public ResponseEntity <String> update(@PathVariable String id, @RequestBody MilestoneDTO milestoneDTO){
         try {
@@ -39,6 +42,7 @@ public class MilestoneController {
         }
     }
 
+    @PreAuthorize("hasRole('Admin')")
     @DeleteMapping("/{id}")
     public ResponseEntity <String> delete(@PathVariable String id) throws Exception {
         try {
@@ -51,6 +55,7 @@ public class MilestoneController {
         }
     }
 
+    @PreAuthorize("hasRole('Admin')")
     @GetMapping("/{id}")
     public ResponseEntity <?> search(@PathVariable String id) throws Exception {
         try {
@@ -62,6 +67,7 @@ public class MilestoneController {
         }
     }
 
+    @PreAuthorize("hasRole('Admin')")
     @GetMapping
     public ResponseEntity <?> getAll(){
         try {

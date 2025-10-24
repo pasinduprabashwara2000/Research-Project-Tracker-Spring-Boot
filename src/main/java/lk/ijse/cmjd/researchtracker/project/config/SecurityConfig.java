@@ -26,11 +26,14 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .cors(cors -> cors.disable())
-                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // ✅ Important for JWT
+                .sessionManagement(session -> session
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**").permitAll()
-                        .requestMatchers("/api/projects/**").hasAuthority("ADMIN")
+                        .requestMatchers("/api/projects/**").hasAnyAuthority("ADMIN", "PI")
                         .requestMatchers("/api/users/**").hasAuthority("ADMIN")
+                        .requestMatchers("/api/milestone/**").hasAuthority("ADMIN")
+                        .requestMatchers("/api/document/**").hasAuthority("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
