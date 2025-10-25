@@ -13,6 +13,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @RequiredArgsConstructor
@@ -25,17 +27,18 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(csrf -> csrf.disable())
-                .cors(cors -> cors.disable())
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**").permitAll()
-                        .requestMatchers("/api/projects/**").hasAnyAuthority("ADMIN", "PI")
                         .requestMatchers("/api/users/**").hasAuthority("ADMIN")
-                        .requestMatchers("/api/milestone/**").hasAuthority("ADMIN")
-                        .requestMatchers("/api/document/**").hasAuthority("ADMIN")
+                        .requestMatchers("/api/projects/**").hasAnyAuthority("ADMIN", "PI")
+                        .requestMatchers("/api/milestone/**").hasAnyAuthority("ADMIN", "Member")
+                        .requestMatchers("/api/document/**").hasAnyAuthority("ADMIN", "Member")
+
                         .anyRequest().authenticated()
                 )
+
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
@@ -50,4 +53,5 @@ public class SecurityConfig {
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
     }
+
 }

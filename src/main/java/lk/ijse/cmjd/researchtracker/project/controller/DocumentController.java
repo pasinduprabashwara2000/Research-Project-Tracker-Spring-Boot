@@ -16,7 +16,7 @@ public class DocumentController {
 
     private final DocumentService documentService;
 
-    @PreAuthorize("hasRole('Admin')")
+    @PreAuthorize("hasRole('Admin') or hasRole('Member')")
     @PostMapping
     public ResponseEntity <String> save(@RequestBody DocumentDTO documentDTO) throws Exception {
         try {
@@ -29,7 +29,7 @@ public class DocumentController {
         }
     }
 
-    @PreAuthorize("hasRole('Admin')")
+    @PreAuthorize("hasRole('Admin') or hasRole('Member')")
     @PutMapping("/{id}")
     public ResponseEntity <String> update(@PathVariable String id, @RequestBody DocumentDTO documentDTO){
         try {
@@ -42,7 +42,7 @@ public class DocumentController {
         }
     }
 
-    @PreAuthorize("hasRole('Admin')")
+    @PreAuthorize("hasRole('Admin') or hasRole('Member')")
     @DeleteMapping("/{id}")
     public ResponseEntity <String> delete(@PathVariable String id) throws Exception{
         try {
@@ -55,7 +55,7 @@ public class DocumentController {
         }
     }
 
-    @PreAuthorize("hasRole('Admin')")
+    @PreAuthorize("hasRole('Admin') or hasRole('Member') ")
     @GetMapping("/{id}")
     public ResponseEntity <?> search(@PathVariable String id) throws Exception {
         try {
@@ -67,7 +67,7 @@ public class DocumentController {
         }
     }
 
-    @PreAuthorize("hasRole('Admin')")
+    @PreAuthorize("hasRole('Admin') or hasRole('Member')")
     @GetMapping
     public ResponseEntity <?> getAll() {
         try {
