@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 
 @RestController
-@RequestMapping("/api/projects/")
+@RequestMapping("/api/project/")
 @RequiredArgsConstructor
 public class ProjectController {
 
